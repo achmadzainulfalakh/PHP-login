@@ -1,0 +1,6 @@
+Deskripsi:
+Projek ini ditujukan untuk kepentingan pembelajaran, projek ini hanya akan berfokus pada proses pembangunan sebuah aplikasi login menggunakan php native atau php murni. Dalam folder projek ini juga akan disertakan file database auth yang digunakan untuk melakukan otentikasi user.
+Database:
+Create database PHP_login;
+create table auth(id int(11) auto_increment primary key, uname varchar(100), pass varchar(100), email varchar(100),verified varchar(100));
+insert into auth values(null, 'admin', 'admin', 'admin@gmail.com','yes');
