@@ -1,6 +1,8 @@
 <?php 
 /*menyembunyikan laporan error di php*/
-// error_reporting(0);
+error_reporting(0);
+include 'database.php';
+include 'func_database.php';
 /*memulai session*/ 
 session_start();
 /*cek session login*/
@@ -11,15 +13,16 @@ if ($sesi=='true') {
 if ($_POST['login']=='login') {
 	$uname=$_POST['username'];
 	$pass=$_POST['password'];
-	$username='admin'; /*bisa diganti dengan username yang tersimpan dalam database*/
-	$password='admin'; /*bisa diganti dengan password yang tersimpan dalam database*/
 
-	if ($uname == $username && $pass == $password) {
+	$result=cekAuth($uname,$pass);
+	$row=$result->fetch_assoc();
+	
+	if ($uname == $row['uname'] && $pass == $row['pass']) {
 		$loggedIn='true';
 		$uname=$_POST['username'];
 
 		$_SESSION['loggedIn']=$loggedIn;
-		$_SESSION['username']=uname;
+		$_SESSION['username']=$uname;
 		header("location: dashboard.php");
 	}
 } print_r($_SESSION['loggedIn']);
@@ -28,7 +31,8 @@ if ($_POST['login']=='login') {
 <html>
 <head>
 	<title>PHP-login</title>
-	<!-- Latest compiled and minified CSS -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- Optional theme -->
