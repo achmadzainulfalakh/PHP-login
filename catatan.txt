@@ -1,3 +1,5 @@
+Versi: 1
+Oleh: Achmad Zainul Falakh, S. Kom.
 Deskripsi:
 Projek ini ditujukan untuk kepentingan pembelajaran, projek ini hanya akan berfokus pada proses pembangunan sebuah aplikasi login menggunakan php native atau php murni. Dalam folder projek ini juga akan disertakan file database auth yang digunakan untuk melakukan otentikasi user.
 Database:
