@@ -1,3 +1,29 @@
+<?php 
+/*menyembunyikan laporan error di php*/
+// error_reporting(0);
+/*memulai session*/ 
+session_start();
+/*cek session login*/
+$sesi=$_SESSION['loggedIn'];
+if ($sesi=='true') {
+	header("location: dashboard.php");
+}
+if ($_POST['login']=='login') {
+	$uname=$_POST['username'];
+	$pass=$_POST['password'];
+	$username='admin'; /*bisa diganti dengan username yang tersimpan dalam database*/
+	$password='admin'; /*bisa diganti dengan password yang tersimpan dalam database*/
+
+	if ($uname == $username && $pass == $password) {
+		$loggedIn='true';
+		$uname=$_POST['username'];
+
+		$_SESSION['loggedIn']=$loggedIn;
+		$_SESSION['username']=uname;
+		header("location: dashboard.php");
+	}
+} print_r($_SESSION['loggedIn']);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +49,7 @@
 						<form role="form" name="formlogin" action="" method="post">
 							<fieldset>
 								<div class="form-group">
-									<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
+									<input class="form-control" placeholder="username" name="username" type="text" autofocus="">
 								</div>
 								<div class="form-group">
 									<input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -34,7 +60,7 @@
 									</label>
 								</div>
 								<!-- Change this to a button or input when using this as a form -->
-								<a href="javascript:;" class="btn btn-sm btn-success">Login</a>
+								<input type="submit" name="login" value="login" class="btn btn-sm btn-success">
 							</fieldset>
 						</form>
 					</div>
